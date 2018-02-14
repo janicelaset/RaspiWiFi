@@ -17,6 +17,6 @@ if [ "$_IP" ]; then
   printf "My IP address is %s\n" "$_IP"
 fi
 
-python3 [[project_dir]]/Reset\ Device/reset.py &
+# python3 [[project_dir]]/Reset\ Device/reset.py &
 
 exit 0

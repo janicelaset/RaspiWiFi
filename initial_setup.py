@@ -81,7 +81,6 @@ if(run_setup_ans == 'y'):
 	os.system('rm -f ./tmp/*')
 	os.system('sudo cp -r ./Reset\ Device/static_files/dhcpd.conf /etc/dhcp/')
 	os.system('sudo cp -r ./Reset\ Device/static_files/hostapd.conf /etc/hostapd/')
-	os.system('sudo cp -r /etc/network/interfaces ./Reset\ Device/static_files/interfaces.apclient')
 	os.system('sudo cp -r ./Reset\ Device/static_files/interfaces.aphost /etc/network/interfaces')
 	os.system('sudo cp -r ./Reset\ Device/static_files/isc-dhcp-server.aphost /etc/default/isc-dhcp-server')
 	os.system('sudo cp -r ./Reset\ Device/static_files/rc.local.aphost /etc/rc.local')
