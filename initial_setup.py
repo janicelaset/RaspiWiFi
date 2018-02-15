@@ -47,6 +47,8 @@ run_setup_ans = input("Would you like to run the initial setup for RaspiWiFi? (y
 
 if(run_setup_ans == 'y'):
 	print("Updating config files...")
+	os.system('sudo cp -r ' + project_path + '/Reset\ Device/static_files/dhcpd.conf /etc/dhcp/')
+	os.system('sudo cp -r ' + project_path + '/Reset\ Device/static_files/hostapd.conf /etc/hostapd/')
 	os.system("sed -i -e '$i \python3 '" + project_path + "'/wifi_init.py &\n' /etc/rc.local")
 else:
 	print()
