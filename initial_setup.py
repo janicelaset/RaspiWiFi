@@ -3,10 +3,9 @@ import fileinput
 import os
 import sys
 
+project_path = os.path.dirname(os.path.abspath(__file__))
 
-def install_prereqs():
-	project_path = os.path.dirname(os.path.abspath(__file__))
-	
+def install_prereqs():  	
 	print("Updating Apt...")
 	os.system('apt update')
 	print("Installing prerequisites via Apt...")
@@ -14,33 +13,6 @@ def install_prereqs():
 	print("Installing necessary Ruby Gems. This can take a few minutes...")
 	os.system('gem install nokogiri --no-document -v 1.6.6.2 -- --use-system-libraries')
 	os.system('bundle install --gemfile=' + project_path + '/Configuration\ App/Gemfile')
-
-# def update_config_paths():
-# 	project_path = os.path.dirname(os.path.abspath(__file__))
-
-# 	os.system('sudo cp -a Reset\ Device/static_files/rc.local.aphost.template Reset\ Device/static_files/rc.local.aphost')
-# 	os.system('sudo cp -a Reset\ Device/static_files/rc.local.apclient.template Reset\ Device/static_files/rc.local.apclient')
-# 	os.system('sudo cp -a Reset\ Device/reset.py.template Reset\ Device/reset.py')
-
-# 	with fileinput.FileInput("Reset Device/static_files/rc.local.aphost", inplace=True) as file:
-# 		for line in file:
-# 			print(line.replace("[[project_dir]]", project_path), end='')
-# 		file.close
-
-# 	with fileinput.FileInput("Reset Device/static_files/rc.local.apclient", inplace=True) as file:
-# 		for line in file:
-# 			print(line.replace("[[project_dir]]", project_path), end='')
-# 		file.close
-
-# 	with fileinput.FileInput("Reset Device/reset.py", inplace=True) as file:
-# 		for line in file:
-# 			print(line.replace("[[project_dir]]", project_path), end='')
-# 		file.close
-
-
-#################################################################
-#################################################################
-
 
 print()
 print("###################################")
@@ -75,16 +47,7 @@ run_setup_ans = input("Would you like to run the initial setup for RaspiWiFi? (y
 
 if(run_setup_ans == 'y'):
 	print("Updating config files...")
-	# update_config_paths()
-
-# 	os.system('sudo rm -f /etc/wpa_supplicant/wpa_supplicant.conf')
-# 	os.system('rm -f ./tmp/*')
-# 	os.system('sudo cp -r ./Reset\ Device/static_files/dhcpd.conf /etc/dhcp/')
-# 	os.system('sudo cp -r ./Reset\ Device/static_files/hostapd.conf /etc/hostapd/')
-# 	os.system('sudo cp -r ./Reset\ Device/static_files/interfaces.aphost /etc/network/interfaces')
-# 	os.system('sudo cp -r ./Reset\ Device/static_files/isc-dhcp-server.aphost /etc/default/isc-dhcp-server')
-	os.system(sed -i -e '$i \python3 ' + project_path + '/wifi_init.py &\n' rc.local)
-	# os.system('sudo cp -r ./Reset\ Device/static_files/rc.local /etc/rc.local')
+	os.system("sed -i -e '$i \python3 '" + project_path + "'/wifi_init.py &\n' /etc/rc.local")
 else:
 	print()
 	print()
@@ -99,8 +62,6 @@ else:
 	print()
 	sys.exit(0)
 
-# print()
-# print()
 print("Initial setup is complete. To enter Wifi Configuration mode, power off the device, set DIP switch x to ON and power the device back on.")
 reboot_ans = input("Shut down the device now?  (y/n): ")
 
