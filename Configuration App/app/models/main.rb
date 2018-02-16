@@ -106,10 +106,10 @@ class Main < ActiveRecord::Base
 	raspiwifi_path = find_raspiwifi_path()
 	lsb_release_string = %x{lsb_release -a}
 	
-		system ('sudo cp -r ' + raspiwifi_path + '/Reset\ Device/static_files/interfaces.apclient /etc/network/interfaces')
-	  system ('sudo cp -r ' + raspiwifi_path + '/Reset\ Device/static_files/rc.local.apclient /etc/rc.local')
-    system ('sudo cp -r ' + raspiwifi_path + '/Reset\ Device/static_files/isc-dhcp-server.apclient /etc/default/isc-dhcp-server')
-    system ('sudo reboot')
+		# system ('sudo cp -r ' + raspiwifi_path + '/Reset\ Device/static_files/interfaces.apclient /etc/network/interfaces')
+	  # system ('sudo cp -r ' + raspiwifi_path + '/Reset\ Device/static_files/rc.local.apclient /etc/rc.local')
+    # system ('sudo cp -r ' + raspiwifi_path + '/Reset\ Device/static_files/isc-dhcp-server.apclient /etc/default/isc-dhcp-server')
+    # system ('sudo reboot')
   end
 
   def self.reset_all
