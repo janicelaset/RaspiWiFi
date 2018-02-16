@@ -7,7 +7,7 @@ GPIO.setup(4, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 project_path = os.path.dirname(os.path.abspath(__file__))
 
 if GPIO.input(4) == 0:
-  if os.path.exists("/etc/wpa_supplicant/wpa_supplicant.conf") == 0:
+  if not os.path.exists("/etc/wpa_supplicant/wpa_supplicant.conf"):
     os.system('sudo cp -r ' + project_path + '/Reset\ Device/static_files/wpa_supplicant.conf /etc/wpa_supplicant/')
   
   os.system('sudo cp -r ' + project_path + '/Reset\ Device/static_files/interfaces.apclient /etc/network/interfaces')
