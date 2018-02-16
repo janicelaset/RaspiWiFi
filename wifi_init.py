@@ -7,11 +7,10 @@ GPIO.setup(4, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 project_path = os.path.dirname(os.path.abspath(__file__))
 
 if GPIO.input(4) == 0:
-  os.system('sudo systemctl disable hostapd.service && sudo systemctl disable isc-dhcp-server.service')
+  os.system('sudo cp -r ' + project_path + '/Reset\ Device/static_files/wpa_supplicant.conf /etc/network/interfaces')
   os.system('sudo cp -r ' + project_path + '/Reset\ Device/static_files/interfaces.apclient /etc/network/interfaces')
   os.system('sudo cp -r ' + project_path + '/Reset\ Device/static_files/isc-dhcp-server.apclient /etc/default/isc-dhcp-server')
 else:
-  os.system('sudo systemctl start hostapd.service && sudo systemctl start isc-dhcp-server.service')
   os.system('sudo rm -f /etc/wpa_supplicant/wpa_supplicant.conf')
   os.system('sudo cp -r ' + project_path + '/Reset\ Device/static_files/interfaces.aphost /etc/network/interfaces')
   os.system('sudo cp -r ' + project_path + '/Reset\ Device/static_files/isc-dhcp-server.aphost /etc/default/isc-dhcp-server')
